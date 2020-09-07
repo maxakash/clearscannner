@@ -314,17 +314,13 @@ JNIEXPORT jobject JNICALL Java_com_scanlibrary_ScanActivity_getBWBitmap
         __android_log_print(ANDROID_LOG_VERBOSE, APPNAME,"AndroidBitmap_lockPixels() failed ! error=%d", ret);
     }
 
-    Mat mbgra(info.height, info.width, CV_8UC4, pixels);
-    // init our output image
-    Mat dst = mbgra.clone();
-
 //    cvtColor(mbgra, dst, CV_BGR2GRAY);
-    float alpha = 2.2;
-    float beta = 0;
-    float gama = 2.2;
-    dst.convertTo(dst, -1, gama, beta);
-
-    threshold(dst,dst,0,255,THRESH_BINARY | THRESH_OTSU);
+    Mat mbgra(info.height, info.width, CV_8UC4, pixels);
+          Mat dst = mbgra.clone();
+          // init our output image
+          float alpha = 2.0;
+          float beta = -100;
+          dst.convertTo(dst, -2, gama, beta);
 
 
     //get source bitmap's config
